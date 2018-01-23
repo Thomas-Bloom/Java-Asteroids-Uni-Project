@@ -1,5 +1,7 @@
 package game1;
 
+import utilities.Vector2D;
+
 import static game1.Constants.FRAME_HEIGHT;
 import static game1.Constants.FRAME_WIDTH;
 import static game1.Constants.DT;
@@ -19,6 +21,8 @@ public class BasicAsteroid {
         this.y = y;
         this.vx = vx;
         this.vy = vy;
+        Vector2D vec = new Vector2D();
+        vec.add(this.x, this.y);
     }
 
     // TODO public static BasicAsteroid makeRandomAsteroid(){}
