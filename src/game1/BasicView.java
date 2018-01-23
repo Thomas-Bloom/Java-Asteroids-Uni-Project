@@ -2,7 +2,6 @@ package game1;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Iterator;
 
 public class BasicView extends JComponent {
     // background colour

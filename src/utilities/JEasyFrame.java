@@ -1,7 +1,8 @@
 package utilities;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import java.awt.Component;
+import java.awt.BorderLayout;
 
 public class JEasyFrame extends JFrame {
     public Component comp;

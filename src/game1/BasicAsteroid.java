@@ -24,9 +24,8 @@ public class BasicAsteroid {
     // TODO public static BasicAsteroid makeRandomAsteroid(){}
     public static BasicAsteroid makeRandomAsteroid(){
         Random random = new Random();
-        double minPos = FRAME_WIDTH - 0;
-        double randomXpos = (FRAME_WIDTH) * random.nextDouble();
-        double randomYPos = (FRAME_HEIGHT) * random.nextDouble();
+        double randomXpos = FRAME_WIDTH * (Math.random() * Math.PI);
+        double randomYPos = FRAME_HEIGHT * (Math.random() * Math.PI);
         double randomVx = -MAX_SPEED + (MAX_SPEED - -MAX_SPEED) * random.nextDouble();
         double randomVy = -MAX_SPEED + (MAX_SPEED - -MAX_SPEED) * random.nextDouble();
         BasicAsteroid asteroid = new BasicAsteroid(randomXpos, randomYPos, randomVx, randomVy);

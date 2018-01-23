@@ -9,6 +9,6 @@ public class Constants {
             Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
 
     // Sleep time between two frames
-    public static final int DELAY = 20;
+    public static final int DELAY = 10;
     public static final double DT = DELAY / 1000.0;
 }
