@@ -9,21 +9,20 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Random;
 
-public class BasicAsteroid {
+public class BasicAsteroid{
     public static final int RADIUS = 10;
     public static final double MAX_SPEED = 100;
 
     private double x, y;
     private double vx, vy;
-    private Vector2D vec;
+    private Vector2D vec = new Vector2D();
 
     public BasicAsteroid(double x, double y, double vx, double vy){
         this.x = x;
         this.y = y;
         this.vx = vx;
         this.vy = vy;
-        vec = new Vector2D();
-        vec.add(this.x, this.y);
+        vec.set(x, y);
     }
 
     // TODO public static BasicAsteroid makeRandomAsteroid(){}
@@ -38,14 +37,14 @@ public class BasicAsteroid {
     }
 
     public void update(){
-        x += vx * DT;
-        y += vy * DT;
-        x = (x + FRAME_WIDTH) % FRAME_WIDTH;
-        y = (y + FRAME_HEIGHT) % FRAME_HEIGHT;
+        vec.x += vx * DT;
+        vec.y += vy * DT;
+        vec.x = (vec.x + FRAME_WIDTH) % FRAME_WIDTH;
+        vec.y = (vec.y + FRAME_HEIGHT) % FRAME_HEIGHT;
     }
 
     public void draw(Graphics2D g){
         g.setColor(Color.red);
-        g.fillOval((int) x - RADIUS, (int) y - RADIUS, 2 * RADIUS, 2 * RADIUS);
+        g.fillOval((int) vec.x - RADIUS, (int) vec.y - RADIUS, 2 * RADIUS, 2 * RADIUS);
     }
 }
