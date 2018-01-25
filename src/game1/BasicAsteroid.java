@@ -15,13 +15,14 @@ public class BasicAsteroid {
 
     private double x, y;
     private double vx, vy;
+    private Vector2D vec;
 
     public BasicAsteroid(double x, double y, double vx, double vy){
         this.x = x;
         this.y = y;
         this.vx = vx;
         this.vy = vy;
-        Vector2D vec = new Vector2D();
+        vec = new Vector2D();
         vec.add(this.x, this.y);
     }
 
