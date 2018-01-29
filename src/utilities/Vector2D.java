@@ -148,9 +148,9 @@ public final class Vector2D {
 
     // rotate by angle given in radians
     public Vector2D rotate(double angle) {
-        double x = this.x * Math.cos(angle) - this.y * Math.sin(angle);
-        double y = this.x * Math.sin(angle) + this.y * Math.cos(angle);
-        this.set(x, y);
+        double tempX = this.x * Math.cos(angle) - this.y * Math.sin(angle);
+        double tempY = this.x * Math.sin(angle) + this.y * Math.cos(angle);
+        this.set(tempX, tempY);
         return this;
     }
 

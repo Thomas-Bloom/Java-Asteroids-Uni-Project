@@ -30,7 +30,7 @@ public class BasicKeys extends KeyAdapter implements BasicController {
                 action.turn = -1;
                 break;
             case KeyEvent.VK_RIGHT:
-                action.turn = 1;
+                action.turn = +1;
             case KeyEvent.VK_SPACE:
                 action.shoot = true;
                 break;

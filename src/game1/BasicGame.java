@@ -8,18 +8,22 @@ import java.util.List;
 public class BasicGame {
     public static final int N_INITIAL_ASTEROIDS = 5;
     public static List<BasicAsteroid> asteroids;
+    public static BasicShip ship;
+    public static BasicKeys ctrl;
 
     public BasicGame(){
         asteroids = new ArrayList<>();
         for(int i = 0; i < N_INITIAL_ASTEROIDS; i++){
             asteroids.add(BasicAsteroid.makeRandomAsteroid());
         }
+        ctrl = new BasicKeys();
+        ship = new BasicShip(ctrl);
     }
 
     public static void main(String[] args) throws Exception{
         BasicGame game = new BasicGame();
         BasicView view = new BasicView(game);
-        new JEasyFrame(view, "Basic Game");
+        new JEasyFrame(view, "Basic Game").addKeyListener(ctrl);
 
 
         while(true){
@@ -33,5 +37,6 @@ public class BasicGame {
         for(BasicAsteroid a : asteroids){
             a.update();
         }
+        ship.update();
     }
 }
