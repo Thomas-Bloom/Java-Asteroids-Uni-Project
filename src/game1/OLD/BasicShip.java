@@ -1,11 +1,14 @@
-package game1;
+package game1.OLD;
 
+import game1.Action;
+import game1.BasicController;
+import game1.Constants;
 import utilities.Vector2D;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-public class BasicShip {
+public class BasicShip{
     public static final int RADIUS = 8;
     public boolean thrusting = false;
 
@@ -30,6 +33,7 @@ public class BasicShip {
     // Controller which provies an Action object in each frame
     private BasicController ctrl;
 
+
     public BasicShip(BasicController ctrl){
         this.ctrl = ctrl;
         position = new Vector2D(0,0);
@@ -37,7 +41,6 @@ public class BasicShip {
         velocity = new Vector2D();
         direction = new Vector2D(position);
     }
-
 
     public void update(){
         Action action = ctrl.action();
@@ -55,6 +58,7 @@ public class BasicShip {
     }
 
     public void draw(Graphics2D g){
+
         int[] XP = {-25,0, 25, 0};
         int[] YP = {25, 0, 25, -50};
         int[] XPThrust = {-13,0,13,0};
@@ -75,6 +79,9 @@ public class BasicShip {
             g.fillPolygon(thrustPoly);
         }
         g.setTransform(at);
+
+
+
 
         /* OLD CODE
         g.setColor(COLOR);

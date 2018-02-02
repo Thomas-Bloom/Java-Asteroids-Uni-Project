@@ -20,10 +20,9 @@ public class BasicView extends JComponent {
         g.setColor(BG_COLOR);
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        for(BasicAsteroid asteroid : BasicGame.asteroids){
-            asteroid.draw(g);
+        for(GameObject gameObject : game.objects){
+            gameObject.draw(g);
         }
-        BasicGame.ship.draw(g);
     }
 
     @Override

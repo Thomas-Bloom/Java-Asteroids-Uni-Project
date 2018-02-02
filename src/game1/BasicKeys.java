@@ -15,20 +15,23 @@ public class BasicKeys extends KeyAdapter implements BasicController {
         return action;
     }
 
-
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
         switch (key){
+            case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
                 action.thrust = 1;
                 break;
+            case KeyEvent.VK_S:
             case KeyEvent.VK_DOWN:
                 action.thrust = -1;
                 break;
+            case KeyEvent.VK_A:
             case KeyEvent.VK_LEFT:
                 action.turn = -1;
                 break;
+            case KeyEvent.VK_D:
             case KeyEvent.VK_RIGHT:
                 action.turn = +1;
             case KeyEvent.VK_SPACE:
@@ -42,15 +45,19 @@ public class BasicKeys extends KeyAdapter implements BasicController {
         int key = e.getKeyCode();
 
         switch (key){
+            case KeyEvent.VK_W:
             case KeyEvent.VK_UP:
                 action.thrust = 0;
                 break;
+            case KeyEvent.VK_S:
             case KeyEvent.VK_DOWN:
                 action.thrust = 0;
                 break;
+            case KeyEvent.VK_A:
             case KeyEvent.VK_LEFT:
                 action.turn = 0;
                 break;
+            case KeyEvent.VK_D:
             case KeyEvent.VK_RIGHT:
                 action.turn = 0;
             case KeyEvent.VK_SPACE:

@@ -8,12 +8,12 @@ public abstract class GameObject {
     public Vector2D position;
     public Vector2D velocity;
     public boolean dead;
-    public double radius;
+    public Color color;
 
-    public GameObject(Vector2D pos, Vector2D vel, double rad){
-        this.position = pos;
-        this.velocity = vel;
-        this.radius = rad;
+    public GameObject(Vector2D pos, Vector2D vel, Color color){
+        this.position = new Vector2D(pos);
+        this.velocity = new Vector2D(vel);
+        this.color = color;
     }
 
     public void hit(){
