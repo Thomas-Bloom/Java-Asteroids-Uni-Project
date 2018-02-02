@@ -3,10 +3,10 @@ package game1;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class BasicKeys extends KeyAdapter implements BasicController {
+public class Keys extends KeyAdapter implements Controller {
     Action action;
 
-    public BasicKeys(){
+    public Keys(){
         action = new Action();
     }
 
@@ -34,6 +34,7 @@ public class BasicKeys extends KeyAdapter implements BasicController {
             case KeyEvent.VK_D:
             case KeyEvent.VK_RIGHT:
                 action.turn = +1;
+                break;
             case KeyEvent.VK_SPACE:
                 action.shoot = true;
                 break;
@@ -60,6 +61,7 @@ public class BasicKeys extends KeyAdapter implements BasicController {
             case KeyEvent.VK_D:
             case KeyEvent.VK_RIGHT:
                 action.turn = 0;
+                break;
             case KeyEvent.VK_SPACE:
                 action.shoot = false;
                 break;

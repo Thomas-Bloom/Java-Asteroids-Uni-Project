@@ -1,5 +1,5 @@
 package game1;
 
-public interface BasicController {
+public interface Controller {
     public Action action();
 }

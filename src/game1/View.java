@@ -3,13 +3,13 @@ package game1;
 import javax.swing.*;
 import java.awt.*;
 
-public class BasicView extends JComponent {
+public class View extends JComponent {
     // background colour
     public static final Color BG_COLOR = Color.black;
 
-    private BasicGame game;
+    private Game game;
 
-    public BasicView(BasicGame game) {
+    public View(Game game) {
         this.game = game;
     }
 

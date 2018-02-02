@@ -10,10 +10,9 @@ public abstract class GameObject {
     public boolean dead;
     public Color color;
 
-    public GameObject(Vector2D pos, Vector2D vel, Color color){
+    public GameObject(Vector2D pos, Vector2D vel){
         this.position = new Vector2D(pos);
         this.velocity = new Vector2D(vel);
-        this.color = color;
     }
 
     public void hit(){

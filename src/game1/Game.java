@@ -3,32 +3,27 @@ package game1;
 import utilities.JEasyFrame;
 import utilities.Vector2D;
 
-import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
-import static game1.Constants.FRAME_HEIGHT;
-import static game1.Constants.FRAME_WIDTH;
-
-public class BasicGame {
+public class Game {
     public static final int N_INITIAL_ASTEROIDS = 5;
-    public List<GameObject> objects;
-    public static BasicKeys ctrl;
+    public static List<GameObject> objects;
+    public static Keys ctrl;
 
-    public BasicGame(){
+    public Game(){
         objects = new ArrayList<>();
 
         for(int i = 0; i < N_INITIAL_ASTEROIDS; i++){
             objects.add(Asteroid.makeRandomAsteroid());
         }
-        ctrl = new BasicKeys();
+        ctrl = new Keys();
         objects.add(new Ship(ctrl));
     }
 
     public static void main(String[] args) throws Exception{
-        BasicGame game = new BasicGame();
-        BasicView view = new BasicView(game);
+        Game game = new Game();
+        View view = new View(game);
         new JEasyFrame(view, "Basic Game").addKeyListener(ctrl);
 
         while(true){
@@ -39,8 +34,18 @@ public class BasicGame {
     }
 
     public void update(){
-        for(GameObject gameObject : objects){
+        List<GameObject> alive = new ArrayList<>();
+        for(GameObject gameObject : objects) {
             gameObject.update();
+            if(!gameObject.dead)
+                alive.add(gameObject);
         }
+        if(Ship.bullet != null){
+            alive.add(Ship.bullet);
+            Ship.bullet = null;
+        }
+        objects.clear();
+
+        objects.addAll(alive);
     }
 }

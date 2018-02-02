@@ -1,7 +1,7 @@
 package game1.OLD;
 
 import game1.Action;
-import game1.BasicController;
+import game1.Controller;
 import game1.Constants;
 import utilities.Vector2D;
 
@@ -31,10 +31,10 @@ public class BasicShip{
     public Vector2D direction;
 
     // Controller which provies an Action object in each frame
-    private BasicController ctrl;
+    private Controller ctrl;
 
 
-    public BasicShip(BasicController ctrl){
+    public BasicShip(Controller ctrl){
         this.ctrl = ctrl;
         position = new Vector2D(0,0);
         position.set(Constants.FRAME_WIDTH / 2, Constants.FRAME_HEIGHT / 2);

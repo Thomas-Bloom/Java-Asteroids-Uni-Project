@@ -7,18 +7,20 @@ import java.awt.geom.AffineTransform;
 
 public class Ship extends GameObject{
     public static Vector2D direction = new Vector2D();
-    private BasicController ctrl;
+    private Controller ctrl;
     public static boolean thrusting = false;
+    public static Bullet bullet = null;
+    public static Action action;
     // Rotation velocity in radians per second
     public static final double STEER_RATE = 2 * Math.PI;
     // Acceleration when thrust is applied
-    public static final double MAG_ACC = 2;
+    public static final double MAG_ACC = 1;
     // Constant speed loss factor
-    public static final double DRAG = 0.1;
+    public static final double DRAG = 0.01;
 
     // Constructor
-    Ship(BasicController ctrl) {
-        super(new Vector2D(Constants.FRAME_WIDTH / 2, Constants.FRAME_HEIGHT / 2), new Vector2D(0, 0), Color.cyan);
+    Ship(Controller ctrl) {
+        super(new Vector2D(Constants.FRAME_WIDTH / 2, Constants.FRAME_HEIGHT / 2), new Vector2D(0, 0));
         this.ctrl = ctrl;
         direction = new Vector2D(0, -position.y);
     }
@@ -28,7 +30,7 @@ public class Ship extends GameObject{
         super.update();
 
         // Code specific to the ship gameObject
-        Action action = ctrl.action();
+        action = ctrl.action();
         direction.rotate(action.turn * STEER_RATE * Constants.DT);
         velocity.addScaled(direction, (MAG_ACC * Constants.DT * action.thrust));
         position.addScaled(velocity, DRAG  * Constants.DT);
@@ -42,12 +44,13 @@ public class Ship extends GameObject{
         if(action.shoot){
             mkBullet();
             action.shoot = false;
+            //BasicGame.objects.add(mkBullet());
         }
     }
 
     // Create a bullet
     private void mkBullet(){
-
+        bullet = new Bullet(position, velocity);
     }
 
     @Override
@@ -56,6 +59,7 @@ public class Ship extends GameObject{
         int[] YP = {25, 0, 25, -50};
         int[] XPThrust = {-13, 0, 13, 0};
         int[] YPThrust = {13, 0, 13, 40};
+
         Polygon shipPoly = new Polygon(XP, YP, XP.length);
         Polygon thrustPoly = new Polygon(XPThrust, YPThrust, XPThrust.length);
         AffineTransform at = g.getTransform();
@@ -63,7 +67,7 @@ public class Ship extends GameObject{
         double rot = Ship.direction.angle() + Math.PI / 2;
         g.rotate(rot);
         g.scale(0.5, 0.5);
-        g.setColor(color);
+        g.setColor(Color.cyan);
         g.fillPolygon(shipPoly);
 
         if (Ship.thrusting) {
