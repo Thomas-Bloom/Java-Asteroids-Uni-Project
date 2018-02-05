@@ -14,9 +14,12 @@ public class Ship extends GameObject{
     // Rotation velocity in radians per second
     public static final double STEER_RATE = 2 * Math.PI;
     // Acceleration when thrust is applied
-    public static final double MAG_ACC = 1;
+    public static final double MAG_ACC = 1.5;
     // Constant speed loss factor
     public static final double DRAG = 0.01;
+
+    private static int time = 30;
+
 
     // Constructor
     Ship(Controller ctrl) {
@@ -35,22 +38,25 @@ public class Ship extends GameObject{
         velocity.addScaled(direction, (MAG_ACC * Constants.DT * action.thrust));
         position.addScaled(velocity, DRAG  * Constants.DT);
         position.wrap(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
+
         // Checks if the user is pressing forwards
         if(action.thrust == 1){
             thrusting = true;
         } else{
             thrusting = false;
         }
-        if(action.shoot){
+        time -= 1;
+        if(action.shoot && time <= 0){
             mkBullet();
-            action.shoot = false;
-            //BasicGame.objects.add(mkBullet());
+            time = 30;
         }
     }
 
     // Create a bullet
-    private void mkBullet(){
-        bullet = new Bullet(position, velocity);
+    private GameObject mkBullet(){
+        bullet = new Bullet(position);
+        Game.alive.add(bullet);
+        return bullet;
     }
 
     @Override

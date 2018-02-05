@@ -9,6 +9,7 @@ import java.util.List;
 public class Game {
     public static final int N_INITIAL_ASTEROIDS = 5;
     public static List<GameObject> objects;
+    public static List<GameObject> alive;
     public static Keys ctrl;
 
     public Game(){
@@ -34,12 +35,14 @@ public class Game {
     }
 
     public void update(){
-        List<GameObject> alive = new ArrayList<>();
+        alive = new ArrayList<>();
         for(GameObject gameObject : objects) {
             gameObject.update();
+            // NOT DEAD
             if(!gameObject.dead)
                 alive.add(gameObject);
         }
+
         if(Ship.bullet != null){
             alive.add(Ship.bullet);
             Ship.bullet = null;
