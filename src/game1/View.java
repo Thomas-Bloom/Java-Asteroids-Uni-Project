@@ -9,7 +9,8 @@ public class View extends JComponent {
 
     private Game game;
 
-    public View(Game game) {
+
+    public View(Game game){
         this.game = game;
     }
 
@@ -20,9 +21,16 @@ public class View extends JComponent {
         g.setColor(BG_COLOR);
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        for(GameObject gameObject : game.objects){
-            gameObject.draw(g);
+        synchronized (Game.class){
+            for(GameObject gameObject : game.objects){
+                gameObject.draw(g);
+            }
         }
+        g.setColor(Color.white);
+        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+        g.drawString("Score: " + Game.getScore(), 20,20);
+        g.drawString("Lives: " + Game.getLives(), getWidth() - 80, 20);
     }
 
     @Override

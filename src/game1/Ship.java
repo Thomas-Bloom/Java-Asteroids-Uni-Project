@@ -12,26 +12,27 @@ public class Ship extends GameObject{
     public static Bullet bullet = null;
     public static Action action;
     // Rotation velocity in radians per second
-    public static final double STEER_RATE = 2 * Math.PI;
+    public static final double STEER_RATE = 1.2 * Math.PI;
     // Acceleration when thrust is applied
-    public static final double MAG_ACC = 1.5;
+    public static final double MAG_ACC = 0.9;
     // Constant speed loss factor
-    public static final double DRAG = 0.01;
+    public static final double DRAG = 0.1;
 
     private static int time = 30;
 
+    public static Color color;
 
     // Constructor
     Ship(Controller ctrl) {
-        super(new Vector2D(Constants.FRAME_WIDTH / 2, Constants.FRAME_HEIGHT / 2), new Vector2D(0, 0));
+        super(new Vector2D(Constants.FRAME_WIDTH / 2, Constants.FRAME_HEIGHT / 2), new Vector2D(0, 0), 8);
         this.ctrl = ctrl;
         direction = new Vector2D(0, -position.y);
+        invincible = true;
     }
 
     public void update() {
         // Enables user to control forward/backward movement
         super.update();
-
         // Code specific to the ship gameObject
         action = ctrl.action();
         direction.rotate(action.turn * STEER_RATE * Constants.DT);
@@ -50,6 +51,11 @@ public class Ship extends GameObject{
             mkBullet();
             time = 30;
         }
+
+        if(invincible)
+            color = Color.blue;
+        else
+            color = Color.cyan;
     }
 
     // Create a bullet
@@ -72,8 +78,8 @@ public class Ship extends GameObject{
         g.translate(position.x, position.y);
         double rot = Ship.direction.angle() + Math.PI / 2;
         g.rotate(rot);
+        g.setColor(color);
         g.scale(0.5, 0.5);
-        g.setColor(Color.cyan);
         g.fillPolygon(shipPoly);
 
         if (Ship.thrusting) {

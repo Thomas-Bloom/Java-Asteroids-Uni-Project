@@ -8,8 +8,8 @@ public class Bullet extends GameObject {
     double time = 80;
 
     Bullet(Vector2D spawnPos){
-        super(new Vector2D(spawnPos.x,spawnPos.y), new Vector2D(0,0));
-        this.velocity.addScaled(Ship.direction, bulletSpeed * Constants.DT);
+        super(new Vector2D(spawnPos.x,spawnPos.y), new Vector2D(0,0), 5);
+        velocity.addScaled(Ship.direction, bulletSpeed * Constants.DT);
     }
 
     @Override
